@@ -1,0 +1,1105 @@
+:root {
+    --primary: #6366f1;
+    --primary-light: #818cf8;
+    --primary-dark: #4f46e5;
+    --background: #f8fafc;
+    --surface: #ffffff;
+    --text: #1f2937;
+    --text-light: #64748b;
+    --border: #e2e8f0;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --income: #10b981;
+    --expense: #ef4444;
+    --savings: #6366f1;
+    --potential: #8b5cf6;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --transition-speed: 0.3s;
+    --card-bg: #ffffff;
+    --item-bg: rgba(99, 102, 241, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    display: flex;
+    background: var(--background);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 280px;
+    background: var(--surface);
+    padding: 1.5rem;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    transition: width var(--transition-speed) ease;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    z-index: 100;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    overflow-x: hidden;
+}
+
+.sidebar.collapsed {
+    width: 80px;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.sidebar.collapsed .sidebar-header h2 {
+    display: none;
+}
+
+.sidebar h2 {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+}
+
+.toggle-btn:hover {
+    color: var(--primary);
+    background-color: rgba(99, 102, 241, 0.1);
+}
+
+.hamburger-menu {
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 99;
+    background: var(--primary);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--card-shadow);
+    transition: all var(--transition-speed) ease;
+    opacity: 0; /* Hidden by default, shown when sidebar collapsed */
+}
+
+.hamburger-menu:hover {
+    background: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+.sidebar nav ul {
+    list-style: none;
+}
+
+.sidebar nav ul li a {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.sidebar-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.75rem;
+}
+
+.sidebar.collapsed .menu-text {
+    display: none;
+}
+
+.sidebar.collapsed .sidebar-icon {
+    margin-right: 0;
+}
+
+.sidebar.collapsed nav ul li a {
+    justify-content: center;
+    padding: 0.75rem;
+}
+
+.sidebar nav ul li a:hover {
+    background: var(--primary-light);
+    color: white;
+}
+
+.sidebar nav ul li a.active {
+    background: var(--primary);
+    color: white;
+}
+
+/* Main Content Styles */
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    margin-left: 280px;
+    transition: margin-left var(--transition-speed) ease;
+}
+
+.main-content.expanded {
+    margin-left: 80px;
+}
+
+/* Personal Finance Title */
+.personal-finance-title {
+    background: linear-gradient(90deg, var(--primary) 0%, var(--potential) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+/* Avatar and Menu Styles */
+.avatar-container {
+    position: relative;
+    cursor: pointer;
+    margin-left: 1.5rem;
+}
+
+.avatar-svg {
+    border-radius: 50%;
+    padding: 0.5rem;
+    background-color: var(--primary-light);
+    color: white;
+    transition: background-color 0.2s ease;
+}
+
+.avatar-container:hover .avatar-svg {
+    background-color: var(--primary-dark);
+}
+
+.avatar-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 150px;
+    background: var(--surface);
+    border-radius: 0.5rem;
+    box-shadow: var(--card-shadow);
+    padding: 0.5rem 0;
+    display: none;
+    z-index: 10;
+}
+
+.avatar-menu.active {
+    display: block;
+}
+
+.menu-item {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.menu-item:hover {
+    background-color: var(--border);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.header-text p {
+    color: var(--text-light);
+    margin-top: 0.25rem;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    padding: 0 0.5rem;
+    width: 200px;
+    font-size: 0.95rem;
+}
+
+.search-bar button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-light);
+}
+
+.add-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.add-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+/* The rest of the CSS remains the same */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: var(--card-shadow);
+}
+
+.stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.stat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-icon.income {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--income);
+}
+
+.stat-icon.expense {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--expense);
+}
+
+.stat-icon.savings {
+    background-color: rgba(99, 102, 241, 0.1);
+    color: var(--savings);
+}
+
+.stat-icon.potential {
+    background-color: rgba(139, 92, 246, 0.1);
+    color: var(--potential);
+}
+
+.stat-content h2 {
+    font-size: 1.875rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.trend {
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.trend.positive {
+    color: var(--success);
+}
+
+.trend.negative {
+    color: var(--danger);
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2a2a2a;
+}
+
+.percentage {
+    font-size: 0.9rem;
+    color: #555;
+    font-weight: normal;
+    margin-left: 5px;
+}
+
+/* Charts Grid */
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.chart-card {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: var(--card-shadow);
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.chart-header select {
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    outline: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.chart-content {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+.predictions-section {
+    margin-bottom: 2rem;
+}
+
+.predictions-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+}
+
+.prediction-card {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: var(--card-shadow);
+}
+
+.prediction-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.prediction-header h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.prediction-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--potential);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prediction-metrics {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: var(--card-shadow);
+}
+
+.metric-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.metric-item:last-child {
+    border-bottom: none;
+}
+
+.metric-label {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.metric-value {
+    font-weight: 600;
+    color: var(--text);
+}
+
+/* Responsive Design for Predictions */
+@media (max-width: 1024px) {
+    .predictions-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Hamburger Menu Styles */
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.hamburger-icon {
+    width: 24px;
+    height: 3px;
+    background: var(--text);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.hamburger-icon:before,
+.hamburger-icon:after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 3px;
+    background: var(--text);
+    transition: all 0.3s ease;
+}
+
+.hamburger-icon:before {
+    top: -8px;
+}
+
+.hamburger-icon:after {
+    bottom: -8px;
+}
+
+/* Active State for Hamburger */
+.hamburger-menu.active .hamburger-icon {
+    background: transparent;
+}
+
+.hamburger-menu.active .hamburger-icon:before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.hamburger-menu.active .hamburger-icon:after {
+    transform: rotate(-45deg);
+    bottom: 0;
+}
+.loading {
+    color: var(--text-light);
+    animation: pulse 1.5s infinite;
+}
+
+.error {
+    color: var(--danger);
+}
+
+.no-data {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-light);
+}
+
+.add-transaction-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--primary);
+    color: white;
+    border-radius: 0.5rem;
+    text-decoration: none;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+
+.insight-item, .recommendation-item {
+    background: var(--item-bg);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-left: 4px solid #6366f1;
+    font-size: 0.9rem;
+}
+
+.recommendation-item {
+    background: rgba(16, 185, 129, 0.1);
+    border-left: 4px solid #10b981;
+}
+
+.insight-item p, .recommendation-item p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.insight-item p + p, .recommendation-item p + p {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-light);
+}
+
+.savings-amount {
+    font-weight: 600;
+    color: var(--success) !important;
+}
+
+/* Types of insights/recommendations */
+.insight-item[data-type="category"],
+.recommendation-item[data-type="category"] {
+    border-left-color: #f59e0b;
+    background: rgba(245, 158, 11, 0.1);
+}
+
+.insight-item[data-type="timing"],
+.recommendation-item[data-type="timing"] {
+    border-left-color: #8b5cf6;
+    background: rgba(139, 92, 246, 0.1);
+}
+
+.insight-item[data-type="general"],
+.recommendation-item[data-type="general"] {
+    border-left-color: #6366f1;
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.recommendation-item[data-type="critical"] {
+    border-left-color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.recommendation-item[data-type="warning"] {
+    border-left-color: #f59e0b;
+    background: rgba(245, 158, 11, 0.1);
+}
+
+.recommendation-item[data-type="positive"] {
+    border-left-color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.insight-item[data-type="info"],
+.recommendation-item[data-type="info"] {
+    border-left-color: #64748b;
+    background: rgba(100, 116, 139, 0.1);
+}
+
+.no-data {
+    text-align: center;
+    color: var(--text-light);
+    padding: 1rem;
+}
+
+.chart-content {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+.insights-list, .recommendations-list {
+    overflow-y: auto;
+    max-height: 300px;
+    padding-right: 5px;
+}
+
+.transactions-list {
+    margin-top: 1rem;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+.transaction-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(99, 102, 241, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+.transaction-info {
+    flex: 1;
+}
+
+.transaction-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transaction-amount {
+    font-weight: 600;
+}
+
+.transaction-amount.income {
+    color: var(--success);
+}
+
+.transaction-amount.expense {
+    color: var(--danger);
+}
+
+.transaction-details {
+    color: var(--text-light);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.loading-transactions,
+.no-transactions,
+.error-transactions {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-light);
+}
+
+.loading-spinner {
+    border: 2px solid var(--border);
+    border-top: 2px solid var(--primary);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: block;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 1000;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 250px;
+        z-index: 999;
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding-top: 4rem;
+    }
+}
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .header-right {
+        margin-top: 1rem;
+        width: 100%;
+    }
+    
+    .search-bar {
+        flex: 1;
+    }
+    
+    .main-content {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .predictions-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+.insights-grid {
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.insight-card, .simulation-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    max-height: 450px;
+}
+
+.insights-list, .recommendations-list {
+    overflow-y: auto;
+    max-height: 300px;
+    padding-right: 5px;
+}
+
+.insight-item, .recommendation-item {
+    background: var(--item-bg);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-left: 4px solid #6366f1;
+    font-size: 0.9rem;
+}
+
+.simulation-section {
+    margin-bottom: 2rem;
+}
+
+.simulation-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+#categorySelect {
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    min-width: 200px;
+}
+
+#amountSlider {
+    flex: 1;
+}
+
+.transactions-section {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 2rem;
+}
+
+.transactions-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.transaction-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+/* Ensure you have a consistent style for buttons, inputs, and other elements */
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+}
+
+button {
+    cursor: pointer;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--primary-dark);
+}
+
+input, select, textarea {
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.error {
+    color: var(--danger);
+}
+
+.loading {
+    color: var(--text-light);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Ensure consistent card styles */
+.card {
+    background: var(--surface);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 1rem;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.card-content {
+    position: relative;
+    min-height: 250px;
+}
+
+/* Make category comparison and budget optimization charts smaller */
+#categoryComparisonChart, #budgetOptimizationChart {
+    max-height: 250px;
+}
+
+/* Add responsive adjustments */
+@media (max-width: 1200px) {
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .insight-card, .simulation-card {
+        max-height: 400px;
+    }
+    
+    .insights-list, .recommendations-list {
+        max-height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .chart-content {
+        height: 180px;
+    }
+    
+    .insights-list, .recommendations-list {
+        max-height: 200px;
+    }
+    
+    .insight-item, .recommendation-item {
+        padding: 10px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Analytics section improvements */
+.analytics-section {
+    margin-bottom: 1.5rem;
+}
+
+.analytics-section .card-title {
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+/* Specific fixes for budget recommendations and spending analysis */
+#spendingAnalysisSection, #budgetRecommendationsSection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+#spendingAnalysisSection .chart-container, 
+#budgetRecommendationsSection .chart-container {
+    height: 220px;
+    max-height: 220px;
+    overflow: hidden;
+}
+
+#spendingInsights, #budgetRecommendations {
+    max-height: 220px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+@media (max-width: 1024px) {
+    #spendingAnalysisSection, #budgetRecommendationsSection {
+        grid-template-columns: 1fr;
+    }
+    
+    #spendingAnalysisSection .chart-container, 
+    #budgetRecommendationsSection .chart-container {
+        height: 200px;
+        max-height: 200px;
+    }
+    
+    #spendingInsights, #budgetRecommendations {
+        max-height: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-title {
+        font-size: 1rem;
+    }
+    
+    #spendingAnalysisSection .chart-container, 
+    #budgetRecommendationsSection .chart-container {
+        height: 180px;
+        max-height: 180px;
+    }
+    
+    #spendingInsights, #budgetRecommendations {
+        max-height: 180px;
+    }
+}
+
+/* Card styles */
+.card {
+    background: var(--surface);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 1rem;
+}
+
+/* Fix insights-grid layout */
+.insights-grid {
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+/* Chart container for consistent height */
+.chart-container {
+    position: relative;
+    height: 220px;
+    margin-bottom: 0.5rem;
+}
+
+/* Ensure charts look good */
+canvas {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+    #spendingAnalysisSection, #budgetRecommendationsSection {
+        gap: 0.5rem;
+    }
+    
+    .card {
+        padding: 0.75rem;
+    }
+    
+    .card-title {
+        font-size: 0.95rem;
+    }
+    
+    .chart-container {
+        height: 160px;
+    }
+    
+    #spendingInsights, #budgetRecommendations {
+        max-height: 160px;
+    }
+    
+    .insight-item, .recommendation-item {
+        padding: 8px;
+        font-size: 0.8rem;
+        margin-bottom: 8px;
+    }
+}

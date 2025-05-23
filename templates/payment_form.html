@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/payment.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Payment Form</h1>
+        </header>
+        <form id="payment-form" method="POST" action="/payment">
+            <label>Logged in as: <span id="username">{{ user }}</span></label>
+            <div class="form-group">
+                <label for="transaction_type">Transaction Type:</label>
+                <select id="transaction_type" name="transaction_type" required>
+                    <option value="expense">Expense</option>
+                    <option value="income">Income</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="payment_method">Payment Method:</label>
+                <select id="payment_method" name="payment_method" required>
+                    <option value="card">Card</option>
+                    <option value="bank">Bank</option>
+                    <option value="upi">UPI</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="category-field">
+                <label for="category">Category:</label>
+                <select id="category" name="category" required></select>
+            </div>
+
+            <div class="form-group" id="amount-field">
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" name="amount" required>
+            </div>
+
+            <div class="form-group" id="description-field">
+                <label for="description">Description:</label>
+                <input type="text" id="description" name="description">
+            </div>
+
+            <div class="form-group" id="card-number-field" style="display: none;">
+                <label for="card_number">Card Number:</label>
+                <input type="text" id="card_number" name="card_number">
+            </div>
+
+            <div class="form-group" id="bank-account-field" style="display: none;">
+                <label for="bank_account">Bank Account:</label>
+                <input type="text" id="bank_account" name="bank_account">
+            </div>
+
+            <div class="form-group" id="upi-field" style="display: none;">
+                <label for="upi_id">UPI ID:</label>
+                <input type="text" id="upi_id" name="upi_id">
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Submit Transaction</button>
+            </div>
+        </form>
+        <p id="error-message" class="error-message" style="display: none;"></p>
+    </div>
+    <script src="{{ url_for('static', filename='js/payment.js') }}"></script>
+</body>
+</html>

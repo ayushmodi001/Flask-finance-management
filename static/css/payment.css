@@ -1,0 +1,104 @@
+:root {
+    --primary: #6366f1;
+    --primary-light: #818cf8;
+    --primary-dark: #4f46e5;
+    --background: #f8fafc;
+    --surface: #ffffff;
+    --text: #1f2937;
+    --text-light: #64748b;
+    --border: #e2e8f0;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --income: #10b981;
+    --expense: #ef4444;
+    --savings: #6366f1;
+    --potential: #8b5cf6;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--background);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+.container {
+    background: var(--surface);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: var(--card-shadow);
+    width: 100%;
+    max-width: 450px;
+    margin: auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+header label, header span {
+    color: var(--text-light);
+    font-size: 1rem;
+    display: block;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    transition: border-color var(--transition-speed) ease;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+button:hover {
+    background: var(--primary-dark);
+}
+
+.error-message {
+    color: var(--danger);
+    text-align: center;
+    margin-top: 1rem;
+}

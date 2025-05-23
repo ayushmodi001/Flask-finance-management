@@ -1,0 +1,204 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+/* Ensure you have a consistent style for buttons, inputs, and other elements */
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+}
+
+button {
+    cursor: pointer;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--primary-dark);
+}
+
+input, select, textarea {
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.error {
+    color: var(--danger);
+}
+
+.loading {
+    color: var(--text-light);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Ensure consistent card styles */
+.card {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: var(--card-shadow);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.card-content {
+    position: relative;
+    min-height: 250px;
+}
+/* Root Colors */
+:root {
+    --primary-color: #6c5ce7;
+    --secondary-color: #a29bfe;
+    --background-color: #f5f6fa;
+    --text-color: #2d3436;
+    --input-bg: #ffffff;
+    --shadow-color: rgba(108, 92, 231, 0.2);
+}
+
+/* Body Styling */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--background-color);
+    padding: 2rem; /* Ensures content doesn’t touch screen edges */
+}
+
+/* Form Container */
+.form-container {
+    width: 90%;
+    max-width: 35rem; /* Ensures it doesn't get too wide on desktops */
+    background: var(--input-bg);
+    padding: 2rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 0.5rem 1.5rem var(--shadow-color);
+    text-align: center;
+}
+
+/* Form Header */
+h2 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+/* Input Group */
+.input-group {
+    text-align: left;
+    margin-bottom: 1.2rem;
+}
+
+label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+input, select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--secondary-color);
+    border-radius: 0.5rem;
+    outline: none;
+    font-size: 1rem;
+    background: #f9f9f9;
+}
+
+/* Button Styling */
+button {
+    width: 100%;
+    padding: 0.9rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+    background: var(--secondary-color);
+}
+
+/* Redirect Link */
+p.redirect {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+p.redirect a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+p.redirect a:hover {
+    text-decoration: underline;
+}
+
+/* ✅ Full Mobile & Tablet Responsiveness */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    .form-container {
+        width: 95%;
+        padding: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    input, select, button {
+        font-size: 0.95rem;
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        width: 100%;
+        padding: 1.2rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    input, select, button {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
+}
