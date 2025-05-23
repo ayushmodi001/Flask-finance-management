@@ -26,11 +26,6 @@ A comprehensive Finance Management web application that helps users track expens
 
 ---
 
-## 📸 Demo
-
-> _Add screenshots or a GIF here to showcase your app UI and predictions!_
-
----
 
 ## 📂 Project Structure
 
