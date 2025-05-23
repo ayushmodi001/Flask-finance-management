@@ -12,23 +12,16 @@ A comprehensive Finance Management web application that helps users track expens
 - **Analytics Dashboard:** Intuitive charts and graphs to visualize spending patterns.
 - **AI-based Predictions:** XGBoost-powered forecasts of future expenses.
 - **Responsive Frontend:** Modern, mobile-friendly UI using HTML, CSS, and JavaScript.
-- **Data Export:** Export your financial data to CSV (optional, if implemented).
 
 ---
 
 ## 🛠 Tech Stack
 
 - **Backend:** [Flask](https://flask.palletsprojects.com/)
-- **Frontend:** HTML, CSS, JavaScript (optionally Bootstrap or Chart.js for UI and charts)
+- **Frontend:** HTML, CSS, JavaScript
 - **Machine Learning:** [XGBoost](https://xgboost.readthedocs.io/) (for spending predictions)
-- **Database:** SQLite (or your preferred DB)
+- **Database:** Postgresql
 - **Visualization:** Chart.js or Plotly.js (optional for data visualization)
-
----
-
-
-## 📂 Project Structure
-
 
 ---
 
